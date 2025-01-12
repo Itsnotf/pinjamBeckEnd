@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('nama_barang');
             $table->string('merk');
+            $table->string('serial_number');
             $table->string('lokasi');
             $table->string('stok');
             $table->string('gambar');

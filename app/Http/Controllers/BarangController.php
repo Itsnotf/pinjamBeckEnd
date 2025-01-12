@@ -16,7 +16,6 @@ class BarangController extends Controller
     public function index()
     {
             $data = Barang::get();
-
             return response()->json([
                 'status' => true,
                 'message' => 'Data barang berhasil diambil',
@@ -40,6 +39,7 @@ class BarangController extends Controller
         $rules = [
             'nama_barang' => 'required',
             'merk' => 'required',
+            'serial_number' => 'required',
             'lokasi' => 'required',
             'stok' => 'required',
             'gambar' => 'required|image|mimes:jpeg,png,jpg,gif'
@@ -62,6 +62,7 @@ class BarangController extends Controller
         $barang = Barang::create([
             'nama_barang' => $request->nama_barang,
             'merk' => $request->merk,
+            'serial_number' => $request->serial_number,
             'lokasi' => $request->lokasi,
             'stok' => $request->stok,
             'gambar' => $imagePath
@@ -123,6 +124,7 @@ class BarangController extends Controller
         $rules = [
             'nama_barang' => 'sometimes|required',
             'merk' => 'sometimes|required',
+            'serial_number' => 'sometimes|required',
             'lokasi' => 'sometimes|required',
             'stok' => 'sometimes|required|integer',
             'gambar' => 'nullable|image|mimes:jpeg,png,jpg,gif'
