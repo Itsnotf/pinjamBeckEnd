@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('barangs', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('katagori_id')->constrained('katagoris')->casecadeOnDelete();
             $table->string('nama_barang');
             $table->string('merk');
             $table->string('serial_number');

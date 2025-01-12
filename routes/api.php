@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BarangController;
+use App\Http\Controllers\KatagoriController;
 use App\Http\Controllers\KontakController;
 use App\Http\Controllers\PeminjamanController;
 use App\Http\Controllers\SaranController;
@@ -27,5 +28,6 @@ Route::apiResource('barang', BarangController::class)->middleware('auth:sanctum'
 Route::apiResource('kontak', KontakController::class)->middleware('auth:sanctum');
 Route::apiResource('saran', SaranController::class)->middleware('auth:sanctum');
 Route::apiResource('peminjaman', PeminjamanController::class)->middleware('auth:sanctum');
+Route::apiResource('katagori', KatagoriController::class)->middleware('auth:sanctum');
 
 

@@ -38,6 +38,7 @@ class BarangController extends Controller
     {
         $rules = [
             'nama_barang' => 'required',
+            'katagori_id' => 'required',
             'merk' => 'required',
             'serial_number' => 'required',
             'lokasi' => 'required',
@@ -61,6 +62,7 @@ class BarangController extends Controller
 
         $barang = Barang::create([
             'nama_barang' => $request->nama_barang,
+            'katagori_id' => $request->katagori_id,
             'merk' => $request->merk,
             'serial_number' => $request->serial_number,
             'lokasi' => $request->lokasi,
@@ -80,23 +82,24 @@ class BarangController extends Controller
      * Display the specified resource.
      */
     public function show(string $id)
-    {
-        $barang = Barang::find($id);
+{
+    $barang = Barang::with('katagori')->find($id);
 
-        if (!$barang) {
-            return response()->json([
-                'status' => false,
-                'message' => 'data barang tidak ditemukan',
-                'data' => $barang->errors()
-            ]);
-        }
-
+    if (!$barang) {
         return response()->json([
-            'status' => true,
-            'message' => 'Data barang berhasil ditampilkan',
-            'data' => $barang
+            'status' => false,
+            'message' => 'Data barang tidak ditemukan',
+            'data' => null
         ]);
     }
+
+    return response()->json([
+        'status' => true,
+        'message' => 'Data barang berhasil ditampilkan',
+        'data' => $barang
+    ]);
+}
+
 
     /**
      * Show the form for editing the specified resource.
@@ -123,6 +126,7 @@ class BarangController extends Controller
 
         $rules = [
             'nama_barang' => 'sometimes|required',
+            'katagori_id' => 'sometimes|required',
             'merk' => 'sometimes|required',
             'serial_number' => 'sometimes|required',
             'lokasi' => 'sometimes|required',
